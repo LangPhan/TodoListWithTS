@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import InputField from "./components/InputField";
 import { Todo } from "./model";
+import SingleTodo from "./components/SingleTodo";
 
 const App: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
@@ -9,7 +10,7 @@ const App: React.FC = () => {
   const handleAddTodo = (e: React.FormEvent): void => {
     e.preventDefault();
     if (todo) {
-      setTodos([...todos, {id: Date.now(), todo: todo, isDone: false}]);
+      setTodos([...todos, { id: Date.now(), todo: todo, isDone: false }]);
       setTodo("");
     }
   };
@@ -23,10 +24,15 @@ const App: React.FC = () => {
         Task Notes
       </h1>
       <InputField todo={todo} setTodo={setTodo} handleAdd={handleAddTodo} />
-      <div className="w-[70%] bg-white mt-5">
-          {todos.map((todo) => (
-            <li className="list-decimal">{todo.todo}</li>
-          ))}
+      <div className="w-full text-center">
+        {todos.map((todo) => (
+          <SingleTodo
+            key={todo.id}
+            todo={todo}
+            todos={todos}
+            setTodos={setTodos}
+          />
+        ))}
       </div>
     </div>
   );
