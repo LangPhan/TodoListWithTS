@@ -9,7 +9,6 @@ interface Props {
 }
 
 const SingleTodo: React.FC<Props> = (Props) => {
-
   const handleDone = (id: number) => {
     Props.setTodos(
       Props.todos.map((todo) =>
@@ -24,8 +23,10 @@ const SingleTodo: React.FC<Props> = (Props) => {
 
   return (
     <div
-      className="bg-white mx-[20%] my-4 px-5 py-5 rounded-md shadow-lg
-    flex flex-row items-center justify-between text-blue-500"
+      className={`${
+        Props.todo.isDone ? "bg-slate-300" : "bg-white"
+      } mx-[20%] 2xl:mx-[40%] my-4 px-5 py-5 rounded-md shadow-lg
+    flex flex-row items-center justify-between text-blue-500`}
     >
       {Props.todo.isDone ? (
         <s>{Props.todo.todo}</s>
@@ -34,13 +35,13 @@ const SingleTodo: React.FC<Props> = (Props) => {
       )}
       <div className="flex flex-row justify-evenly gap-5">
         <span
-          className="cursor-pointer"
+          className="cursor-pointer hover:scale-110 hover:text-blue-600"
           onClick={() => handleDone(Props.todo.id)}
         >
           <AiFillCheckCircle size={"1.5em"} />
         </span>
         <span
-          className="cursor-pointer"
+          className="cursor-pointer hover:scale-110 hover:text-blue-600"
           onClick={() => handleDelete(Props.todo.id)}
         >
           <AiFillDelete size={"1.5em"} />
