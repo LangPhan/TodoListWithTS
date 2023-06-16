@@ -6,7 +6,7 @@ import SingleTodo from "../components/SingleTodo";
 const HomeScreen: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
-
+  
   const handleAddTodo = (e: React.FormEvent): void => {
     e.preventDefault();
     if (todo) {
